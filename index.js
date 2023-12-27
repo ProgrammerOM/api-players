@@ -21,7 +21,7 @@ app.use(limiter);
 connectDB();
 
 readdirSync("./routes").map((r) => app.use(require("./routes/" + r)));
-
-app.listen(5050, () => {
-  console.log(`Example app listening on port 5050`);
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
