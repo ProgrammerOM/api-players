@@ -1,8 +1,10 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const Ratelimit = require("express-rate-limit");
 const cors = require("cors");
 const { readdirSync } = require("fs");
+dotenv.config();
 
 const connectDB = require("./Config/db");
 const app = express();
