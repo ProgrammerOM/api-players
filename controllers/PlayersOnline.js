@@ -4,16 +4,16 @@ async function PlayersOnline() {
   try {
     let PlayersOnlineAdd = Math.floor(Math.random() * 10 + 1);
     let PlayersOnlineReduce = Math.floor(Math.random() * 5 + 1);
-    let playersonline = await Players.findOne({ title: "ผู้เล่นประจำวัน" });
-    console.log(`PlayersOnline ${playersonline}`);
-    if (playersonline != null) {
+    let Playersonline = await Players.findOne({ title: "ผู้เล่นประจำวัน" });
+    console.log(`PlayersOnline ${Playersonline}`);
+    if (Playersonline != null) {
       setInterval(async () => {
-        playersonline.numbers += PlayersOnlineAdd;
+        Playersonline.numbers += PlayersOnlineAdd;
         await Players.findOneAndUpdate(
           { title: "ผู้เล่นประจำวัน" },
           { numbers: playersonline.numbers }
         );
-        playersonline.numbers -= PlayersOnlineReduce;
+        Playersonline.numbers -= PlayersOnlineReduce;
         await Players.findOneAndUpdate(
           { title: "ผู้เล่นประจำวัน" },
           { numbers: playersonline.numbers }
