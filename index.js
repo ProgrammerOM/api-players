@@ -13,6 +13,7 @@ const limiter = Ratelimit({
   windowMs: 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
   message: "คำขอมากเกินไป",
+  headers: true,
 });
 
 app.use(cors());
