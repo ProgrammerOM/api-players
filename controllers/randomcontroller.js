@@ -58,7 +58,7 @@ module.exports.PlayersApplyDaily = async (req, res) => {
       console.log(`เช็คเวลา ${time}`);
 
       if (time != "23:05:00") {
-        ClickPlayersApplyDaily.numbers += 1;
+        ClickPlayersApplyDaily.numbers += 7;
         await Random.findOneAndUpdate(
           { title: "ผู้สมัครใช้งานต่อวัน" },
           { numbers: ClickPlayersApplyDaily.numbers }
@@ -93,7 +93,7 @@ module.exports.PlayersApplyDaily = async (req, res) => {
     } else if (ClickPlayersApplyDaily === null) {
       await Random.create({
         title: "ผู้สมัครใช้งานต่อวัน",
-        numbers: 1000,
+        numbers: 0,
       });
     }
     let ShowDataPlayersApplyDaily = await Random.findOne({
