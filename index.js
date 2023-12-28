@@ -4,9 +4,13 @@ const bodyParser = require("body-parser");
 const Ratelimit = require("express-rate-limit");
 const cors = require("cors");
 const { readdirSync } = require("fs");
+
+const PlayersRegister = require("./controllers/PlayersRegister");
+const PlayersOnline = require("./controllers/PlayersOnline");
 dotenv.config();
 
 const connectDB = require("./Config/db");
+const { time } = require("console");
 const app = express();
 
 const limiter = Ratelimit({
@@ -24,6 +28,8 @@ app.use(bodyParser.json());
 app.use(limiter);
 
 connectDB();
+PlayersRegister();
+PlayersOnline();
 
 readdirSync("./routes").map((r) => app.use(require("./routes/" + r)));
 const PORT = process.env.PORT;

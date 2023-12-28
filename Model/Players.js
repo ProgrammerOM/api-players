@@ -6,5 +6,5 @@ const userSchema = new Schema({
     type: Number,
   },
 });
-const Random = mongoose.model("random", userSchema);
-module.exports = Random;
+const Players = mongoose.model("Players", userSchema);
+module.exports = Players;
