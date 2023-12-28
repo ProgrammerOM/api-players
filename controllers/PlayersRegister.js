@@ -23,7 +23,7 @@ async function PlayersRegister() {
         hour12: false,
       });
       console.log(time);
-      if (time === "00:00:00") {
+      if (time === "17:00:00") {
         let DataPlayersRegister = await Players.findOne({
           title: "ผู้สมัครใช้งานต่อวัน",
         });
