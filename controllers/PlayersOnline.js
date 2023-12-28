@@ -16,7 +16,7 @@ async function PlayersOnline() {
         Playersonline.numbers -= PlayersOnlineReduce;
         await Players.findOneAndUpdate(
           { title: "ผู้เล่นประจำวัน" },
-          { numbers: playersonline.numbers }
+          { numbers: Playersonline.numbers }
         );
       }, 5000);
     } else {
