@@ -4,8 +4,8 @@ async function PlayersRegister() {
   try {
     let number = 0;
     setInterval(async () => {
-      number += 7;
-      let adddata = await Players.findOneAndUpdate(
+      number += 1;
+      let ShowPlayersRegister = await Players.findOneAndUpdate(
         { title: "ผู้สมัครใช้งานต่อวัน" },
         { numbers: number },
         {
@@ -13,7 +13,9 @@ async function PlayersRegister() {
           upsert: true,
         }
       );
-      console.log(`บวกค่าเพ่ิมผู้สมัครใช้งานต่อวัน : ${adddata}`);
+      console.log(
+        `(ผู้สมัครใช้งานต่อวัน)เพิ่มค่าขึ้น : ${ShowPlayersRegister}`
+      );
     }, 10000);
     setInterval(async () => {
       let time = new Date().toLocaleTimeString("it-IT", {
@@ -22,14 +24,14 @@ async function PlayersRegister() {
         second: "2-digit",
         hour12: false,
       });
-      console.log(time);
+
       if (time === "17:00:00") {
         let DataPlayersRegister = await Players.findOne({
           title: "ผู้สมัครใช้งานต่อวัน",
         });
         let DataPlayersAll = await Players.findOne({ title: "ผู้เล่นทั้งหมด" });
         console.log(
-          `เช็คข้อมูลผู้เล่นทั้งหมดว่ามีอยู่หรือไม่ : ${DataPlayersAll}`
+          `(เล่นทั้งหมด)เช็คข้อมูลว่ามีอยู่หรือไม่ : ${DataPlayersAll}`
         );
         if (DataPlayersAll != null) {
           DataPlayersAll.numbers += DataPlayersRegister.numbers;
@@ -42,7 +44,7 @@ async function PlayersRegister() {
             }
           );
           console.log(
-            `ผู้เล่นทั้งหมดบวกเพิ่มจากค่าปัจจุบัน : ${PlayersAllAdd}`
+            `(ผู้เล่นทั้งหมด)เพิ่มค่าขึ้นจากปัจจุบัน : ${PlayersAllAdd}`
           );
         } else {
           let PlayersAll = await Players.findOneAndUpdate(
@@ -53,7 +55,7 @@ async function PlayersRegister() {
               upsert: true,
             }
           );
-          console.log(`เพิ่มข้อมูลผู้เล่นทั้งหมด: ${PlayersAll}`);
+          console.log(`(ผู้เล่นทั้งหมด)เพิ่มข้อมูล: ${PlayersAll}`);
         }
 
         let data = await Players.findOneAndUpdate(

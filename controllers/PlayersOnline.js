@@ -9,15 +9,18 @@ async function PlayersOnline() {
     if (Playersonline != null) {
       setInterval(async () => {
         Playersonline.numbers += PlayersOnlineAdd;
-        await Players.findOneAndUpdate(
-          { title: "ผู้เล่นประจำวัน" },
-          { numbers: playersonline.numbers }
-        );
-        Playersonline.numbers -= PlayersOnlineReduce;
-        await Players.findOneAndUpdate(
+        let ShowPlayersOnlineAdd = await Players.findOneAndUpdate(
           { title: "ผู้เล่นประจำวัน" },
           { numbers: Playersonline.numbers }
         );
+        console.log(`(ผู้เล่นประจำวัน)เพิ่มค่าขึ้น ${ShowPlayersOnlineAdd}`);
+
+        Playersonline.numbers -= PlayersOnlineReduce;
+        let ShowPlayersOnlineReduce = await Players.findOneAndUpdate(
+          { title: "ผู้เล่นประจำวัน" },
+          { numbers: Playersonline.numbers }
+        );
+        console.log(`(ผู้เล่นประจำวัน)ลบค่าลง ${ShowPlayersOnlineReduce}`);
       }, 5000);
     } else {
       await Players.findOneAndUpdate(
