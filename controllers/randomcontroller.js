@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const Random = require("../Model/random");
 const EventEmitter = require("events");
 const emitter = new EventEmitter();
-const Moment = require("moment");
-Moment.locale("th");
 
 module.exports.PlayersDaily = async (req, res) => {
   try {
@@ -50,8 +48,12 @@ module.exports.PlayersApplyDaily = async (req, res) => {
     });
 
     if (ClickPlayersApplyDaily) {
-      let time = Moment().format("LTS");
-      console.log(Moment.locale());
+      let time = new Date().toLocaleTimeString("it-IT", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      });
 
       console.log(`เช็คเวลา ${time}`);
 
