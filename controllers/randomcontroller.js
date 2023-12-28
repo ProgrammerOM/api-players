@@ -51,6 +51,8 @@ module.exports.PlayersApplyDaily = async (req, res) => {
 
     if (ClickPlayersApplyDaily) {
       let time = Moment().format("LTS");
+      console.log(Moment.locale());
+
       console.log(`เช็คเวลา ${time}`);
 
       if (time != "23:05:00") {
