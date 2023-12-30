@@ -9,13 +9,13 @@ async function PlayersOnline() {
         function generateRandomIntegerInRange(min, max) {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        Playersonline.numbers += generateRandomIntegerInRange(7, 15);
+        Playersonline.numbers += generateRandomIntegerInRange(5, 15);
         let ShowPlayersOnlineAdd = await Players.findOneAndUpdate(
           { title: "ผู้เล่นประจำวัน" },
           { numbers: Playersonline.numbers }
         );
         console.log(`(ผู้เล่นประจำวัน)เพิ่มค่าขึ้น ${ShowPlayersOnlineAdd}`);
-        Playersonline.numbers -= generateRandomIntegerInRange(5, 15);
+        Playersonline.numbers -= generateRandomIntegerInRange(7, 15);
         let ShowPlayersOnlineReduce = await Players.findOneAndUpdate(
           { title: "ผู้เล่นประจำวัน" },
           { numbers: Playersonline.numbers }
@@ -31,7 +31,7 @@ async function PlayersOnline() {
           }
         );
       }
-    }, 5000);
+    }, 50000);
   } catch (error) {
     console.log(error);
   }

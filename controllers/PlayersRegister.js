@@ -2,16 +2,18 @@ const Players = require("../Model/Players");
 
 async function PlayersRegister() {
   try {
-    let number = 0;
     setInterval(async () => {
       let CheckPlayersRegister = await Players.findOne({
         title: "ผู้สมัครใช้งานต่อวัน",
       });
       if (CheckPlayersRegister != null) {
-        number += 1;
+        let PlayersRegisterAdd = await Players.findOne({
+          title: "ผู้สมัครใช้งานต่อวัน",
+        });
+        PlayersRegisterAdd.numbers += 1;
         let ShowPlayersRegister = await Players.findOneAndUpdate(
           { title: "ผู้สมัครใช้งานต่อวัน" },
-          { numbers: number }
+          { numbers: PlayersRegisterAdd.numbers }
         );
         console.log(
           `(ผู้สมัครใช้งานต่อวัน)เพิ่มค่าขึ้น : ${ShowPlayersRegister}`
@@ -23,7 +25,7 @@ async function PlayersRegister() {
           { new: true, upsert: true }
         );
       }
-    }, 10000);
+    }, 50000);
     setInterval(async () => {
       let time = new Date().toLocaleTimeString("it-IT", {
         hour: "2-digit",
