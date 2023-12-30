@@ -11,11 +11,7 @@ async function PlayersRegister() {
         number += 1;
         let ShowPlayersRegister = await Players.findOneAndUpdate(
           { title: "ผู้สมัครใช้งานต่อวัน" },
-          { numbers: number },
-          {
-            new: true,
-            upsert: true,
-          }
+          { numbers: number }
         );
         console.log(
           `(ผู้สมัครใช้งานต่อวัน)เพิ่มค่าขึ้น : ${ShowPlayersRegister}`
