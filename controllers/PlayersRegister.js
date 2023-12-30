@@ -2,8 +2,8 @@ const Players = require("../Model/Players");
 
 async function PlayersRegister() {
   try {
+    let number;
     setInterval(async () => {
-      let number;
       let CheckPlayersRegister = await Players.findOne({
         title: "ผู้สมัครใช้งานต่อวัน",
       });
